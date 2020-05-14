@@ -6,7 +6,7 @@ import { Callback, Wrapper } from "./types";
 import resultContainer from "./resultContainer";
 import TestComponent from "./TestComponent";
 import { removeCleanup, addCleanup } from "./cleanup";
-// import asyncUtils from "./asyncUtils";
+import asyncUtils from "./asyncUtils";
 
 const defaultWrapper: Wrapper = (Component) => (props) => (
   <Component {...props} />
@@ -63,6 +63,6 @@ export function renderHook<P, R>(
     result,
     rerender: rerenderHook,
     unmount: unmountHook,
-    // ...asyncUtils(addResolver),
+    ...asyncUtils(addResolver),
   };
 }
