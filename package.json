@@ -1,0 +1,18 @@
+{
+  "name": "preact-hooks-testing-library",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "devDependencies": {
+    "jest": "^26.0.1",
+    "preact": "^10.4.1",
+    "ts-jest": "^25.5.1",
+    "typescript": "^3.9.2"
+  },
+  "peerDependencies": {
+    "@testing-library/preact": "^1.0.2"
+  },
+  "dependencies": {
+    "@testing-library/preact": "^1.0.2"
+  }
+}
