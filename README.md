@@ -108,3 +108,9 @@ test('should increment counter', () => {
   expect(result.current.count).toBe(1);
 });
 ```
+
+### TODO
+
+- [ ] remove `@ts-nocheck` flag from tests
+- [ ] fix asyncHook tests (tests currently fail, skipped for now)
+- [ ] fix disabled auto clean up tests
