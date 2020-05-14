@@ -1,8 +1,10 @@
 {
   "name": "preact-hooks-testing-library",
+  "description": "preact port of @testing-library/react-hooks",
   "version": "1.0.0",
   "main": "index.js",
   "license": "MIT",
+  "author": "Carson McKinstry <carson.mckinstry@trivago.com>",
   "scripts": {
     "test": "jest"
   },
