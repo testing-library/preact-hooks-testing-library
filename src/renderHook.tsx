@@ -6,7 +6,7 @@ import { Callback, Wrapper } from "./types";
 import resultContainer from "./resultContainer";
 import TestComponent from "./TestComponent";
 import { removeCleanup, addCleanup } from "./cleanup";
-import asyncUtils from "./asyncUtils";
+// import asyncUtils from "./asyncUtils";
 
 const defaultWrapper: Wrapper = (Component) => (props) => (
   <Component {...props} />
@@ -27,17 +27,19 @@ export function renderHook<P, R>(
     current: initialProps,
   };
 
-  const TestHook = wrapper(() => (
-    <Suspense fallback={() => null}>
-      <TestComponent
-        callback={callback}
-        hookProps={hookProps.current}
-        onError={setError}
-      >
-        {setValue}
-      </TestComponent>
-    </Suspense>
-  ));
+  const TestHook = wrapper(() => {
+    return (
+      <Suspense fallback={() => null}>
+        <TestComponent
+          callback={callback}
+          hookProps={hookProps.current}
+          onError={setError}
+        >
+          {setValue}
+        </TestComponent>
+      </Suspense>
+    );
+  });
 
   const { unmount, rerender } = render(<TestHook />);
 
@@ -61,6 +63,6 @@ export function renderHook<P, R>(
     result,
     rerender: rerenderHook,
     unmount: unmountHook,
-    ...asyncUtils(addResolver),
+    // ...asyncUtils(addResolver),
   };
 }

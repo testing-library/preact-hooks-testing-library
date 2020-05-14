@@ -3,7 +3,11 @@
   "version": "1.0.0",
   "main": "index.js",
   "license": "MIT",
+  "scripts": {
+    "test": "jest"
+  },
   "devDependencies": {
+    "@types/jest": "^25.2.2",
     "jest": "^26.0.1",
     "preact": "^10.4.1",
     "ts-jest": "^25.5.1",
