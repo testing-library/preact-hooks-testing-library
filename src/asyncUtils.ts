@@ -1,5 +1,5 @@
 import { act } from "@testing-library/preact";
-import { ResolverType } from "./types";
+import { ResolverType } from "./_types";
 
 export interface TimeoutOptions {
   timeout: number;

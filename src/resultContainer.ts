@@ -1,4 +1,4 @@
-import { ResolverType } from "./types";
+import { ResolverType } from "./_types";
 
 function resultContainer<R>(initialValue?: R) {
   let value: R = initialValue as R;

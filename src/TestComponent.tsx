@@ -1,4 +1,4 @@
-import { Callback } from "./types";
+import { Callback } from "./_types";
 
 export interface TestComponentProps<P, R> {
   callback: Callback<P, R>;

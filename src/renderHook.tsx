@@ -2,7 +2,7 @@ import { h } from "preact";
 import { Suspense } from "preact/compat";
 import { render, act } from "@testing-library/preact";
 
-import { Callback, Wrapper } from "./types";
+import { Callback, Wrapper } from "./_types";
 import resultContainer from "./resultContainer";
 import TestComponent from "./TestComponent";
 import { removeCleanup, addCleanup } from "./cleanup";
