@@ -1,4 +1,3 @@
-// @ts-nocheck
 import { h, createContext } from "preact";
 import { useContext } from "preact/hooks";
 import { renderHook } from "../src";

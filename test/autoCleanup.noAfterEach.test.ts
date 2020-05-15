@@ -1,15 +1,15 @@
-// @ts-nocheck
 import { useEffect } from "preact/hooks";
 
-// This verifies that if RHTL_SKIP_AUTO_CLEANUP is set
+// This verifies that if PHTL_SKIP_AUTO_CLEANUP is set
 // then we DON'T auto-wire up the afterEach for folks
 describe("skip auto cleanup (no afterEach) tests", () => {
   let cleanupCalled = false;
-  let renderHook;
+  let renderHook: Function;
 
-  beforeAll(() => {
+  beforeAll(async () => {
+    // @ts-ignore
     afterEach = false;
-    renderHook = require("../src").renderHook;
+    renderHook = (await import("../src")).renderHook;
   });
 
   test("first", () => {

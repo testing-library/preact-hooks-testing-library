@@ -1,4 +1,3 @@
-// @ts-nocheck
 import { useEffect } from "preact/hooks";
 import { renderHook, cleanup } from "../src";
 
@@ -22,8 +21,8 @@ describe("cleanup tests", () => {
   });
 
   test("should cleanup all rendered hooks", async () => {
-    let cleanupCalled = [];
-    const hookWithCleanup = (id) => {
+    let cleanupCalled: boolean[] = [];
+    const hookWithCleanup = (id: number) => {
       useEffect(() => {
         return () => {
           cleanupCalled[id] = true;

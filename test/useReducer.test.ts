@@ -1,11 +1,14 @@
-// @ts-nocheck
 import { useReducer } from "preact/hooks";
 import { renderHook, act } from "../src";
 
 describe("useReducer tests", () => {
   test("should handle useReducer hook", () => {
-    const reducer = (state, action) =>
-      action.type === "inc" ? state + 1 : state;
+    const reducer = (
+      state: number,
+      action: {
+        type: "inc";
+      }
+    ) => (action.type === "inc" ? state + 1 : state);
     const { result } = renderHook(() => useReducer(reducer, 0));
 
     const [initialState, dispatch] = result.current;

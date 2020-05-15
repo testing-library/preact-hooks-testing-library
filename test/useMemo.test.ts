@@ -1,13 +1,17 @@
-// @ts-nocheck
 import { useMemo, useCallback } from "preact/hooks";
 import { renderHook } from "../src";
 
 describe("useCallback tests", () => {
   test("should handle useMemo hook", () => {
     const { result, rerender } = renderHook(
-      ({ value }) => useMemo(() => ({ value }), [value]),
+      (props) => {
+        const { value } = props || { value: 0 };
+        return useMemo(() => ({ value }), [value]);
+      },
       {
-        initialProps: { value: 1 },
+        initialProps: {
+          value: 1,
+        },
       }
     );
 
@@ -34,7 +38,8 @@ describe("useCallback tests", () => {
 
   test("should handle useCallback hook", () => {
     const { result, rerender } = renderHook(
-      ({ value }) => {
+      (props) => {
+        const { value } = props || { value: 0 };
         const callback = () => ({ value });
         return useCallback(callback, [value]);
       },

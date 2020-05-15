@@ -1,13 +1,13 @@
-// @ts-nocheck
 import { useEffect, useLayoutEffect } from "preact/hooks";
 import { renderHook } from "../src";
 
 describe("useEffect tests", () => {
   test("should handle useEffect hook", () => {
-    const sideEffect = { [1]: false, [2]: false };
+    const sideEffect: Record<number, boolean> = { [1]: false, [2]: false };
 
     const { rerender, unmount } = renderHook(
-      ({ id }) => {
+      (props) => {
+        const { id } = props || { id: 1 };
         useEffect(() => {
           sideEffect[id] = true;
           return () => {
@@ -33,10 +33,11 @@ describe("useEffect tests", () => {
   });
 
   test("should handle useLayoutEffect hook", () => {
-    const sideEffect = { [1]: false, [2]: false };
+    const sideEffect: Record<number, boolean> = { [1]: false, [2]: false };
 
     const { rerender, unmount } = renderHook(
-      ({ id }) => {
+      (props) => {
+        const { id } = props || { id: 1 };
         useLayoutEffect(() => {
           sideEffect[id] = true;
           return () => {

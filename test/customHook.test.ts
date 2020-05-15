@@ -1,4 +1,3 @@
-// @ts-nocheck
 import { useState, useCallback } from "preact/hooks";
 import { renderHook, act } from "../src";
 

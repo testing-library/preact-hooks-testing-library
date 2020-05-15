@@ -1,4 +1,3 @@
-// @ts-nocheck
 import { useEffect } from "preact/hooks";
 import { renderHook } from "../src";
 

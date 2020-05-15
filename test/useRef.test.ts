@@ -1,4 +1,3 @@
-// @ts-nocheck
 import { useRef, useImperativeHandle } from "preact/hooks";
 import { renderHook } from "../src";
 
@@ -14,7 +13,9 @@ describe("useHook tests", () => {
 
   test("should handle useImperativeHandle hook", () => {
     const { result } = renderHook(() => {
-      const ref = useRef();
+      const ref = useRef<{
+        fakeImperativeMethod: () => boolean;
+      }>();
       useImperativeHandle(ref, () => ({
         fakeImperativeMethod: () => true,
       }));
@@ -23,6 +24,6 @@ describe("useHook tests", () => {
 
     const refContainer = result.current;
 
-    expect(refContainer.current.fakeImperativeMethod()).toBe(true);
+    expect(refContainer.current?.fakeImperativeMethod()).toBe(true);
   });
 });
