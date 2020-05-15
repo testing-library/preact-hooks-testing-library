@@ -47,7 +47,7 @@ export default useCounter;
 ### `useCounter.test.ts`
 
 ```typescript
-import { renderHook, act } from '@trivago/testing-utils/preact-hooks';
+import { renderHook, act } from 'preact-hooks-testing-library';
 import useCounter from './useCounter';
 
 test('should increment counter', () => {
@@ -89,7 +89,7 @@ export default useCounter;
 To wrap our hook in `observer` we pass it to the `wrapper` option.
 
 ```typescript
-import { renderHook, act } from '@trivago/testing-utils/preact-hooks';
+import { renderHook, act } from 'preact-hooks-testing-library';
 import useCounter from './useCounter';
 import { observer } from 'mobx-react-lite';
 
