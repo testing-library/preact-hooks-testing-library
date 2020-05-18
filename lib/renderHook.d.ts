@@ -1,7 +1,8 @@
-import { Callback, Wrapper } from "./_types";
+import { ComponentType } from "preact";
+import { Callback } from "./_types";
 export interface RenderHookOptions<P> {
     initialProps?: P;
-    wrapper?: Wrapper;
+    wrapper?: ComponentType;
 }
 export declare function renderHook<P, R>(callback: Callback<P, R>, { initialProps, wrapper }?: RenderHookOptions<P>): {
     waitForValueToChange: (selector: () => any, options?: import("./asyncUtils").TimeoutOptions) => Promise<void>;

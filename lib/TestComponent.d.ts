@@ -6,4 +6,5 @@ export interface TestComponentProps<P, R> {
     onError: (error: Error) => void;
 }
 declare const TestComponent: <P, R>({ callback, hookProps, children, onError, }: TestComponentProps<P, R>) => null;
+export declare const Fallback: () => null;
 export default TestComponent;

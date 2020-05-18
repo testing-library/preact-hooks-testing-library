@@ -19,9 +19,9 @@
     "ts-jest": "^25.5.1",
     "typescript": "^3.9.2"
   },
-  "peerDependencies": {},
-  "dependencies": {
+  "peerDependencies": {
     "@testing-library/preact": "^1.0.2",
     "preact": "^10.4.1"
-  }
+  },
+  "dependencies": {}
 }
