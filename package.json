@@ -6,7 +6,9 @@
   "license": "MIT",
   "author": "Carson McKinstry <carson.mckinstry@trivago.com>",
   "scripts": {
-    "prebuild": "rimraf ./lib; jest",
+    "prepare": "npm run build",
+    "prebuild": "npm run cleanup; npm t",
+    "cleanup": "rimraf ./lib",
     "build": "tsc",
     "test": "jest"
   },

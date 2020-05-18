@@ -4,9 +4,9 @@ export interface RenderHookOptions<P> {
     wrapper?: Wrapper;
 }
 export declare function renderHook<P, R>(callback: Callback<P, R>, { initialProps, wrapper }?: RenderHookOptions<P>): {
-    wait: (callback: () => any, { timeout, suppressErrors }?: import("./asyncUtils").WaitOptions) => Promise<void>;
-    waitForNextUpdate: (options?: import("./asyncUtils").TimeoutOptions) => Promise<void>;
     waitForValueToChange: (selector: () => any, options?: import("./asyncUtils").TimeoutOptions) => Promise<void>;
+    waitForNextUpdate: (options?: import("./asyncUtils").TimeoutOptions) => Promise<void>;
+    wait: (callback: () => any, options?: import("./asyncUtils").TimeoutOptions) => Promise<void>;
     result: {
         readonly current: R;
         readonly error: Error;

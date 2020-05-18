@@ -14,13 +14,13 @@ At the time of writing, a library did not exist to test preact hooks.
 
 ## When to use this library
 
-- You're writing a library with one or more custom hooks that are not directly tied to a component
-- You have a complex hook that is difficult to test through component interactions
+1. You're writing a library with one or more custom hooks that are not directly tied to a component
+2. You have a complex hook that is difficult to test through component interactions
 
 ## When not to use this library
 
-- Your hook is defined alongside a component and is only used there
-- Your hook is easy to test by just testing the components using it
+1. Your hook is defined alongside a component and is only used there
+2. Your hook is easy to test by just testing the components using it
 
 ## Example #1: Basic
 ---
@@ -66,51 +66,41 @@ test('should increment counter', () => {
 
 Sometimes, hooks may need access to values or functionality outside of itself that are provided by a context provider or some other HOC.
 
-In this example, we use the `useLocalStore` hook from `mobx` which normally requires that the component it is used with in to be wrapped in `observer`, a HOC.
+```typescript jsx
+import { createContext } from 'preact'
+import { useState, useCallback, useContext } from 'preact/hooks'
 
-```typescript
-import { useLocalStore } from 'mobx-react-lite';
-
-const useCounter = () => {
-    const store = useLocalStore(() => ({
-        count: 0,
-        increment() {
-            store.count += 1;
-        }
-    }));
-
-    return store;
+const CounterStepContext = createContext(1)
+export const CounterStepProvider = ({ step, children }) => (
+  <CounterStepContext.Provider value={step}>{children}</CounterStepContext.Provider>
+)
+export function useCounter(initialValue = 0) {
+  const [count, setCount] = useState(initialValue)
+  const step = useContext(CounterStepContext)
+  const increment = useCallback(() => setCount((x) => x + step), [step])
+  const reset = useCallback(() => setCount(initialValue), [initialValue])
+  return { count, increment, reset }
 }
-
-export default useCounter;
 
 ```
 
-To wrap our hook in `observer` we pass it to the `wrapper` option.
+In our test, we simply use CoounterStepProvider as the wrapper when rendering the hook:
 
 ```typescript
-import { renderHook, act } from 'preact-hooks-testing-library';
-import useCounter from './useCounter';
-import { observer } from 'mobx-react-lite';
+import { renderHook, act } from 'preact-hooks-testing-library'
+import { CounterStepProvider, useCounter } from './counter'
 
-test('should increment counter', () => {
-  const { result } = renderHook(
-      () => useCounter(),
-      {
-          wrapper: observer
-      }
-    );
-
+test('should use custom step when incrementing', () => {
+  const wrapper = ({ children }) => <CounterStepProvider step={2}>{children}</CounterStepProvider>
+  const { result } = renderHook(() => useCounter(), { wrapper })
   act(() => {
-    result.current.increment();
-  });
-
-  expect(result.current.count).toBe(1);
-});
+    result.current.increment()
+  })
+  expect(result.current.count).toBe(2)
+})
 ```
 
 ### TODO
 
 - [ ] remove `@ts-nocheck` flag from tests
-- [ ] fix asyncHook tests (tests currently fail, skipped for now)
 - [ ] fix disabled auto clean up tests
