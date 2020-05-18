@@ -1,7 +1,6 @@
 import { h, createContext } from "preact";
 import { useContext } from "preact/hooks";
 import { renderHook } from "../src";
-import { Wrapper } from "../src/_types";
 
 describe("useContext tests", () => {
   test("should get default value from context", () => {
@@ -17,10 +16,8 @@ describe("useContext tests", () => {
   test("should get value from context provider", () => {
     const TestContext = createContext("foo");
 
-    const wrapper: Wrapper = (Component) => (props) => (
-      <TestContext.Provider value="bar">
-        <Component {...props} />
-      </TestContext.Provider>
+    const wrapper = ({ children }: any) => (
+      <TestContext.Provider value="bar">{children}</TestContext.Provider>
     );
 
     const { result } = renderHook(() => useContext(TestContext), { wrapper });
@@ -33,9 +30,9 @@ describe("useContext tests", () => {
 
     const value = { current: "bar" };
 
-    const wrapper: Wrapper = (Component) => (props) => (
+    const wrapper = ({ children }: any) => (
       <TestContext.Provider value={value.current}>
-        <Component {...props} />
+        {children}
       </TestContext.Provider>
     );
 

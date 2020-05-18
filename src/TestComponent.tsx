@@ -27,4 +27,6 @@ const TestComponent = <P, R>({
   return null;
 };
 
+export const Fallback = () => null;
+
 export default TestComponent;

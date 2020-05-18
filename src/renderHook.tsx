@@ -1,25 +1,22 @@
-import { h } from "preact";
+import { h, ComponentType } from "preact";
 import { Suspense } from "preact/compat";
 import { render, act } from "@testing-library/preact";
 
-import { Callback, Wrapper } from "./_types";
+import { Callback } from "./_types";
 import resultContainer from "./resultContainer";
-import TestComponent from "./TestComponent";
+import TestComponent, { Fallback } from "./TestComponent";
 import { removeCleanup, addCleanup } from "./cleanup";
 import asyncUtils from "./asyncUtils";
 
-const defaultWrapper: Wrapper = (Component) => (props) => (
-  <Component {...props} />
-);
-
+const defaultWrapper = (Component: any) => <Component />;
 export interface RenderHookOptions<P> {
   initialProps?: P;
-  wrapper?: Wrapper;
+  wrapper?: ComponentType;
 }
 
 export function renderHook<P, R>(
   callback: Callback<P, R>,
-  { initialProps, wrapper = defaultWrapper }: RenderHookOptions<P> = {}
+  { initialProps, wrapper }: RenderHookOptions<P> = {}
 ) {
   const { result, setValue, setError, addResolver } = resultContainer<R>();
 
@@ -27,9 +24,12 @@ export function renderHook<P, R>(
     current: initialProps,
   };
 
-  const TestHook = wrapper(() => {
-    return (
-      <Suspense fallback={() => null}>
+  const wrapUiIfNeeded = (innerElement: any) =>
+    wrapper ? h(wrapper, null, innerElement) : innerElement;
+
+  const TestHook = () =>
+    wrapUiIfNeeded(
+      <Suspense fallback={<Fallback />}>
         <TestComponent
           callback={callback}
           hookProps={hookProps.current}
@@ -39,7 +39,6 @@ export function renderHook<P, R>(
         </TestComponent>
       </Suspense>
     );
-  });
 
   const { unmount, rerender } = render(<TestHook />);
 
