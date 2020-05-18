@@ -1,7 +1,7 @@
 {
   "name": "@trivago/preact-hooks-testing-library",
   "description": "preact port of @testing-library/react-hooks",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "main": "lib/index.js",
   "license": "MIT",
   "author": "Carson McKinstry <carson.mckinstry@trivago.com>",
