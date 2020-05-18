@@ -20,6 +20,16 @@ At the time of writing, a library did not exist to test preact hooks.
 1. Your hook is defined alongside a component and is only used there
 2. Your hook is easy to test by just testing the components using it
 
+## Installation
+
+Install with your favorite package manager
+
+```
+yarn add -D @trivago/preact-hooks-testing-library
+OR
+npm install --save-dev @trivago/preact-hooks-testing-library
+```
+
 ## Example #1: Basic
 ---
 
