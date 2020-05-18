@@ -1,7 +1,5 @@
 # preact-hooks-testing-library
 
-## USE WITH CAUTION - still experimental
-
 preact port of the the [@testing-library/react-hooks](https://github.com/testing-library/react-hooks-testing-library) library.
 
 ## Why not `@testing-library/react-hooks`?

@@ -1,10 +1,15 @@
 {
-  "name": "preact-hooks-testing-library",
+  "name": "@trivago/preact-hooks-testing-library",
   "description": "preact port of @testing-library/react-hooks",
   "version": "1.0.0",
   "main": "lib/index.js",
   "license": "MIT",
   "author": "Carson McKinstry <carson.mckinstry@trivago.com>",
+  "homepage": "https://github.com/trivago/preact-hooks-testing-library#readme",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/trivago/preact-hooks-testing-library"
+  },
   "scripts": {
     "prepare": "npm run build",
     "prebuild": "npm run cleanup; npm t",
