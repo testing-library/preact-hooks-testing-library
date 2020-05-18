@@ -2,7 +2,7 @@
 import { useState, useEffect } from "preact/hooks";
 import { renderHook } from "../src";
 
-describe.skip("error hook tests", () => {
+describe("error hook tests", () => {
   function useError(throwError) {
     if (throwError) {
       throw new Error("expected");
@@ -48,7 +48,7 @@ describe.skip("error hook tests", () => {
       expect(result.error).toBe(undefined);
     });
 
-    test("should reset error", () => {
+    test.skip("should reset error", () => {
       const { result, rerender } = renderHook(
         (throwError) => useError(throwError),
         {
@@ -70,7 +70,6 @@ describe.skip("error hook tests", () => {
       const { result, waitForNextUpdate } = renderHook(() =>
         useAsyncError(true)
       );
-
       await waitForNextUpdate();
 
       expect(() => {
@@ -99,7 +98,7 @@ describe.skip("error hook tests", () => {
       expect(result.error).toBe(undefined);
     });
 
-    test("should reset async error", async () => {
+    test.skip("should reset async error", async () => {
       const { result, waitForNextUpdate, rerender } = renderHook(
         (throwError) => useAsyncError(throwError),
         {

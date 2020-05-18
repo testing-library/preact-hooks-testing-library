@@ -1,7 +1,7 @@
 import { h, createContext } from "preact";
 import { useContext } from "preact/hooks";
 import { renderHook } from "../src";
-import { Wrapper } from "../src/types";
+import { Wrapper } from "../src/_types";
 
 describe("useContext tests", () => {
   test("should get default value from context", () => {
