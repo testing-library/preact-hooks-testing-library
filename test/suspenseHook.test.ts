@@ -1,9 +1,8 @@
-// @ts-nocheck
 import { renderHook } from "../src";
 
-describe.skip("suspense hook tests", () => {
-  const cache = {};
-  const fetchName = (isSuccessful) => {
+describe("suspense hook tests", () => {
+  const cache: { value?: any } = {};
+  const fetchName = (isSuccessful: boolean) => {
     if (!cache.value) {
       cache.value = new Promise((resolve, reject) => {
         setTimeout(() => {

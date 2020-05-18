@@ -2,10 +2,7 @@ import { act } from "@testing-library/preact";
 import { ResolverType } from "./_types";
 
 export interface TimeoutOptions {
-  timeout: number;
-}
-
-export interface WaitOptions extends TimeoutOptions {
+  timeout?: number;
   suppressErrors?: boolean;
 }
 
@@ -18,13 +15,13 @@ class TimeoutError extends Error {
 }
 
 function asyncUtils(addResolver: (resolver: ResolverType) => void) {
-  let nextUpdatePromise: Promise<any> | null = null;
+  let nextUpdatePromise: Promise<any> | void;
 
   async function waitForNextUpdate(options: TimeoutOptions = { timeout: 0 }) {
     if (!nextUpdatePromise) {
       nextUpdatePromise = new Promise((resolve, reject) => {
         const timeoutId =
-          options.timeout > 0
+          options.timeout! > 0
             ? setTimeout(() => {
                 reject(new TimeoutError("waitForNextUpdate", options));
               }, options.timeout)
@@ -34,7 +31,7 @@ function asyncUtils(addResolver: (resolver: ResolverType) => void) {
           if (timeoutId) {
             clearTimeout(timeoutId);
           }
-          nextUpdatePromise = null;
+          nextUpdatePromise = undefined;
           resolve();
         });
       });
@@ -42,8 +39,68 @@ function asyncUtils(addResolver: (resolver: ResolverType) => void) {
     await nextUpdatePromise;
   }
 
+  async function wait(
+    callback: () => any,
+    options: TimeoutOptions = { timeout: 0, suppressErrors: true }
+  ) {
+    const checkResult = () => {
+      try {
+        const callbackResult = callback();
+        return callbackResult || callbackResult === undefined;
+      } catch (err) {
+        if (!options.suppressErrors) {
+          throw err;
+        }
+      }
+    };
+
+    const waitForResult = async () => {
+      const initialTimeout = options.timeout;
+
+      while (true) {
+        const startTime = Date.now();
+        try {
+          await waitForNextUpdate({ timeout: options.timeout });
+          if (checkResult()) {
+            return;
+          }
+        } catch (err) {
+          if (err.timeout) {
+            throw new TimeoutError("wait", { timeout: initialTimeout });
+          }
+          throw err;
+        }
+        options.timeout! -= Date.now() - startTime;
+      }
+    };
+
+    if (!checkResult()) {
+      await waitForResult();
+    }
+  }
+
+  async function waitForValueToChange(
+    selector: () => any,
+    options: TimeoutOptions = { timeout: 0 }
+  ) {
+    const initialValue = selector();
+    try {
+      await wait(() => selector() !== initialValue, {
+        suppressErrors: false,
+        ...options,
+      });
+    } catch (err) {
+      if (err.timeout) {
+        throw new TimeoutError("waitForValueToChange", options);
+      }
+      throw err;
+    }
+  }
+
   return {
+    waitForValueToChange,
     waitForNextUpdate,
+    wait,
   };
 }
 
