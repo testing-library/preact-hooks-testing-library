@@ -25,9 +25,9 @@ At the time of writing, a library did not exist to test preact hooks.
 Install with your favorite package manager
 
 ```
-yarn add -D @trivago/preact-hooks-testing-library
+yarn add -D @testing-library/preact-hooks
 OR
-npm install --save-dev @trivago/preact-hooks-testing-library
+npm install --save-dev @testing-library/preact-hooks
 ```
 
 ## Example #1: Basic
@@ -55,7 +55,7 @@ export default useCounter;
 ### `useCounter.test.ts`
 
 ```typescript
-import { renderHook, act } from 'preact-hooks-testing-library';
+import { renderHook, act } from '@testing-library/preact-hooks';
 import useCounter from './useCounter';
 
 test('should increment counter', () => {
@@ -95,7 +95,7 @@ export function useCounter(initialValue = 0) {
 In our test, we simply use CoounterStepProvider as the wrapper when rendering the hook:
 
 ```typescript
-import { renderHook, act } from 'preact-hooks-testing-library'
+import { renderHook, act } from '@testing-library/preact-hooks'
 import { CounterStepProvider, useCounter } from './counter'
 
 test('should use custom step when incrementing', () => {
