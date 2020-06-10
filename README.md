@@ -36,7 +36,7 @@ npm install --save-dev @testing-library/preact-hooks
 ### `useCounter.ts`
 
 ```typescript
-import { useState, useCallback } from 'react'; // aliased to preact
+import { useState, useCallback } from 'preact/hooks';
 
 const useCounter = () => {
     const [count, setCount] = useState(0);
