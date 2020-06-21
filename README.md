@@ -1,5 +1,7 @@
 # preact-hooks-testing-library
 
+[![Discord](https://img.shields.io/discord/723559267868737556.svg?color=7389D8&labelColor=6A7EC2&logo=discord&logoColor=ffffff&style=flat-square)](https://discord.gg/c6JN9fM)
+
 preact port of the the [@testing-library/react-hooks](https://github.com/testing-library/react-hooks-testing-library) library.
 
 ## Why not `@testing-library/react-hooks`?
