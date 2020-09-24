@@ -30,7 +30,7 @@ describe("Custom hooks", () => {
   });
 
   describe("return proper fasly values", () => {
-    type Falsy = 0 | null | undefined | false | "" | undefined;
+    type Falsy = 0 | null | undefined | false | "";
 
     function useFalsy(value: Falsy) {
       return value;
