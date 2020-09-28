@@ -1,7 +1,7 @@
 {
   "name": "@testing-library/preact-hooks",
   "description": "Simple and complete React hooks testing utilities that encourage good testing practices.",
-  "version": "1.0.6",
+  "version": "1.1.0",
   "main": "lib/index.js",
   "license": "MIT",
   "author": "Carson McKinstry <carson.mckinstry@trivago.com>",
