@@ -1,7 +1,7 @@
 import { ResolverType } from "./_types";
 
 function resultContainer<R>(initialValue?: R) {
-  let value: R = initialValue as R;
+  let value = initialValue;
   let error: Error;
   const resolvers: ResolverType[] = [];
 
@@ -18,7 +18,7 @@ function resultContainer<R>(initialValue?: R) {
   };
 
   function updateResult(val?: R, err?: Error) {
-    value = val ? val : value;
+    value = val;
     error = err ? err : error;
     resolvers.splice(0, resolvers.length).forEach((resolve) => resolve());
   }
