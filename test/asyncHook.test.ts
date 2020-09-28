@@ -96,7 +96,7 @@ describe("async hook tests", () => {
     expect(complete).toBe(true);
   });
 
-  test.only("should wait for arbitrary expectation to pass", async () => {
+  test("should wait for arbitrary expectation to pass", async () => {
     const { waitFor } = renderHook(() => null);
 
     let actual = 0;
