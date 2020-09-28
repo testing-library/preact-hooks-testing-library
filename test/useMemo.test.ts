@@ -48,13 +48,13 @@ describe("useCallback tests", () => {
 
     const callback1 = result.current;
 
-    const callbackValue1 = callback1();
+    const callbackValue1 = callback1?.();
 
     expect(callbackValue1).toEqual({ value: 1 });
 
     const callback2 = result.current;
 
-    const callbackValue2 = callback2();
+    const callbackValue2 = callback2?.();
 
     expect(callbackValue2).toEqual({ value: 1 });
 
@@ -64,7 +64,7 @@ describe("useCallback tests", () => {
 
     const callback3 = result.current;
 
-    const callbackValue3 = callback3();
+    const callbackValue3 = callback3?.();
 
     expect(callbackValue3).toEqual({ value: 2 });
 
