@@ -15,6 +15,8 @@ describe("useState tests", () => {
 
     const [_, setValue] = result.current;
 
+    // TS thinks that dispatch could be a number
+    // @ts-ignore
     act(() => setValue("bar"));
 
     const [value] = result.current;

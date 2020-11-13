@@ -1,14 +1,17 @@
+import { RefObject } from "preact";
 import { useRef, useImperativeHandle } from "preact/hooks";
 import { renderHook } from "../src";
 
 describe("useHook tests", () => {
   test("should handle useRef hook", () => {
-    const { result } = renderHook(() => useRef());
+    const { result } = renderHook<undefined, RefObject<undefined>>(() =>
+      useRef()
+    );
 
     const refContainer = result.current;
 
-    expect(Object.keys(refContainer)).toEqual(["current"]);
-    expect(refContainer.current).toBeUndefined();
+    expect(Object.keys(refContainer as object)).toEqual(["current"]);
+    expect(refContainer!.current).toBeUndefined();
   });
 
   test("should handle useImperativeHandle hook", () => {
@@ -24,6 +27,6 @@ describe("useHook tests", () => {
 
     const refContainer = result.current;
 
-    expect(refContainer.current?.fakeImperativeMethod()).toBe(true);
+    expect(refContainer?.current?.fakeImperativeMethod()).toBe(true);
   });
 });

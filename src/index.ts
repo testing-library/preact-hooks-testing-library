@@ -1,7 +1,5 @@
 /* globals afterEach */
-import { renderHook } from "./renderHook";
-import { act } from "@testing-library/preact";
-import { cleanup } from "./cleanup";
+import { cleanup } from "./pure";
 
 // @ts-ignore
 if (typeof afterEach === "function" && !process.env.PHTL_SKIP_AUTO_CLEANUP) {
@@ -11,4 +9,4 @@ if (typeof afterEach === "function" && !process.env.PHTL_SKIP_AUTO_CLEANUP) {
   });
 }
 
-export { renderHook, act, cleanup };
+export * from "./pure";

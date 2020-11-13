@@ -8,7 +8,6 @@ import TestComponent, { Fallback } from "./TestComponent";
 import { removeCleanup, addCleanup } from "./cleanup";
 import asyncUtils from "./asyncUtils";
 
-const defaultWrapper = (Component: any) => <Component />;
 export interface RenderHookOptions<P> {
   initialProps?: P;
   wrapper?: ComponentType;
@@ -25,7 +24,7 @@ export function renderHook<P, R>(
   };
 
   const wrapUiIfNeeded = (innerElement: any) =>
-    wrapper ? h(wrapper, null, innerElement) : innerElement;
+    wrapper ? h(wrapper, hookProps.current!, innerElement) : innerElement;
 
   const TestHook = () =>
     wrapUiIfNeeded(
