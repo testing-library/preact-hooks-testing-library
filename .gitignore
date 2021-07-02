@@ -114,3 +114,6 @@ dist
 .yarn/unplugged
 .yarn/build-state.yml
 .pnp.*
+
+# TypeScript build output
+lib
