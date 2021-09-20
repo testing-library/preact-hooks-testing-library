@@ -30,7 +30,7 @@ jobs:
         with:
           node-version: ${{ matrix.node }}
 
-      - name: 📥 Download deps
+      - name: 📥 🏗 Download deps and run build script
         uses: bahmutov/npm-install@v1
         with:
           useLockFile: false
