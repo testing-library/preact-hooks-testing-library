@@ -1,7 +1,7 @@
 import { ResolverType } from "./_types";
 
-function resultContainer<R>(initialValue?: R) {
-  let value = initialValue;
+function resultContainer<R>() {
+  let value: R | undefined;
   let error: Error;
   const resolvers: ResolverType[] = [];
 
@@ -10,7 +10,7 @@ function resultContainer<R>(initialValue?: R) {
       if (error) {
         throw error;
       }
-      return value;
+      return value as R;
     },
     get error() {
       return error;
