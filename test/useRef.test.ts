@@ -27,6 +27,6 @@ describe("useHook tests", () => {
 
     const refContainer = result.current;
 
-    expect(refContainer?.current?.fakeImperativeMethod()).toBe(true);
+    expect(refContainer.current?.fakeImperativeMethod()).toBe(true);
   });
 });
